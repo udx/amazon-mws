@@ -3,6 +3,8 @@
 
 Interaction with the Amazon Api for vendors called MWS
 
+(More endpoints added by UDX)
+
 ### Installation:
 ```bash
 $ composer require mcs/amazon-mws
