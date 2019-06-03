@@ -966,6 +966,35 @@ class MWSClient{
         }
     }
 
+  /**
+   * @param $FeedSubmissionIds
+   *
+   * @throws Exception
+   */
+    public function GetFeedSubmissionList($FeedSubmissionIds)
+    {
+      $query = [];
+      if ( !empty( $FeedSubmissionIds ) && is_array( $FeedSubmissionIds ) ) {
+        $i = 1;
+        foreach( $FeedSubmissionIds as $id ) {
+          $query[ "FeedSubmissionIdList.Id.{$i}" ] = $id;
+          $i++;
+        }
+      }
+
+      $result = $this->request('GetFeedSubmissionList', $query);
+
+      if (isset($result['GetFeedSubmissionListResult']['FeedSubmissionInfo'])) {
+        if ( array_key_exists(0, $result['GetFeedSubmissionListResult']['FeedSubmissionInfo']) ) {
+          return $result['GetFeedSubmissionListResult']['FeedSubmissionInfo'];
+        } else {
+          return [$result['GetFeedSubmissionListResult']['FeedSubmissionInfo']];
+        }
+      } else {
+        return $result;
+      }
+    }
+
     /**
      * Uploads a feed for processing by Amazon MWS.
      * @param string $FeedType (http://docs.developer.amazonservices.com/en_US/feeds/Feeds_FeedType.html)
