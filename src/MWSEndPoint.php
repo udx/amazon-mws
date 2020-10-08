@@ -1,9 +1,10 @@
 <?php
+
 namespace MCS;
 
 use Exception;
 
-class MWSEndPoint{
+class MWSEndPoint {
 
     public static $endpoints = [
         'ListRecommendations' => [
@@ -55,10 +56,10 @@ class MWSEndPoint{
             'date' => '2009-01-01'
         ],
         'GetFeedSubmissionList' => [
-          'method' => 'POST',
-          'action' => 'GetFeedSubmissionList',
-          'path' => '/',
-          'date' => '2009-01-01'
+            'method' => 'POST',
+            'action' => 'GetFeedSubmissionList',
+            'path' => '/',
+            'date' => '2009-01-01'
         ],
         'GetReportList' => [
             'method' => 'POST',
@@ -93,6 +94,12 @@ class MWSEndPoint{
         'ListOrders' => [
             'method' => 'POST',
             'action' => 'ListOrders',
+            'path' => '/Orders/2013-09-01',
+            'date' => '2013-09-01'
+        ],
+        'GetOrdersServiceStatus' => [
+            'method' => 'POST',
+            'action' => 'GetServiceStatus',
             'path' => '/Orders/2013-09-01',
             'date' => '2013-09-01'
         ],
@@ -154,8 +161,7 @@ class MWSEndPoint{
         ]
     ];
 
-    public static function get($key)
-    {
+    public static function get($key) {
         if (isset(self::$endpoints[$key])) {
             return self::$endpoints[$key];
         } else {
